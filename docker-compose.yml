@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql:9.4
+    container_name: numina-mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - ~/workspace/numina-db:/var/lib/mysql

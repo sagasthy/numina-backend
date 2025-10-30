@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: numina-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/numina_db
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        jdbc:
+#          time_zone: America/Toronto
+    show-sql: true
+  flyway:
+    locations: classpath:db/migration
+    ignoreMigrationPatterns: repeatable:missing
