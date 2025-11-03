@@ -12,7 +12,9 @@ import java.util.Map;
 public class DotenvEnvironmentPostProcessor implements EnvironmentPostProcessor {
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+        String profile = environment.getProperty("spring.profiles.active", "development");
+        String envFile = ".env." + profile;
+        Dotenv dotenv = Dotenv.configure().filename(envFile).ignoreIfMissing().load();
         Map<String, Object> dotenvMap = new HashMap<>();
         dotenv.entries().forEach(entry -> dotenvMap.put(entry.getKey(), entry.getValue()));
         environment.getPropertySources().addFirst(new MapPropertySource("dotenvProperties", dotenvMap));

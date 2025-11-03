@@ -1,12 +1,9 @@
 spring:
-  output:
-    ansi:
-      enabled: ALWAYS
   application:
     name: numina-backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://db:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
     hikari:
@@ -20,5 +17,3 @@ spring:
     ignoreMigrationPatterns: repeatable:missing
     connect-retries: 10
     connect-retries-interval: 5s
-  profiles:
-    active: development

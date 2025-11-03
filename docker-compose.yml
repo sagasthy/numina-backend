@@ -2,9 +2,29 @@ services:
   db:
     image: mysql:9.4
     container_name: numina-mysql
+    command: --bind-address=0.0.0.0
     ports:
       - "3306:3306"
     env_file:
-      - .env
+      - .env.docker
     volumes:
       - ~/workspace/numina-db:/var/lib/mysql
+      - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  app:
+    build: .
+    container_name: numina-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.docker
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    restart: unless-stopped
