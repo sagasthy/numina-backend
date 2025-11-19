@@ -22,3 +22,5 @@ spring:
     connect-retries-interval: 5s
   profiles:
     active: development
+numina:
+  default-timezone: America/New_York

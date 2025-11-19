@@ -1,0 +1,1 @@
+When asked to generate features, do not automatically implement step definitions.
