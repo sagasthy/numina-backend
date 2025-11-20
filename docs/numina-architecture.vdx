@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisioDocument xmlns="http://schemas.microsoft.com/office/visio/2003/core"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               xmlns:vdx="http://schemas.microsoft.com/office/visio/2003/vdx">
+  <DocumentProperties>
+    <Creator>Numina Backend Architecture Generator</Creator>
+    <Title>Numina Backend Architecture</Title>
+    <Company>Numina</Company>
+    <Category>Architecture</Category>
+    <Manager>PFM Platform</Manager>
+    <Description>Logical component diagram for Numina Spring Boot backend.</Description>
+  </DocumentProperties>
+
+  <Masters>
+    <!-- Rectangle master -->
+    <Master ID="1" Name="Component" NameU="Component">
+      <Shapes>
+        <Shape ID="1" Name="Rectangle" Type="Shape">
+          <Geom>
+            <Line ToSheet="1">
+              <MoveTo X="0" Y="0"/>
+              <LineTo X="1" Y="0"/>
+              <LineTo X="1" Y="0.7"/>
+              <LineTo X="0" Y="0.7"/>
+              <LineTo X="0" Y="0"/>
+            </Line>
+          </Geom>
+        </Shape>
+      </Shapes>
+    </Master>
+    <!-- Database (cylinder) master -->
+    <Master ID="2" Name="Database" NameU="Database">
+      <Shapes>
+        <Shape ID="2" Name="Cylinder" Type="Shape">
+          <Geom>
+            <Ellipse IVHeight="0.15" CenterX="0.75" CenterY="0.65" Width="1.5" Height="0.3"/>
+            <Line ToSheet="2">
+              <MoveTo X="0" Y="0.65"/>
+              <LineTo X="0" Y="0.15"/>
+              <LineTo X="1.5" Y="0.15"/>
+              <LineTo X="1.5" Y="0.65"/>
+            </Line>
+            <Ellipse CenterX="0.75" CenterY="0.15" Width="1.5" Height="0.3"/>
+          </Geom>
+        </Shape>
+      </Shapes>
+    </Master>
+    <!-- External Actor master -->
+    <Master ID="3" Name="ExternalActor" NameU="ExternalActor">
+      <Shapes>
+        <Shape ID="3" Name="Actor" Type="Shape">
+          <Geom>
+            <Ellipse CenterX="0.4" CenterY="0.9" Width="0.4" Height="0.4"/>
+            <Line ToSheet="3">
+              <MoveTo X="0.4" Y="0.7"/>
+              <LineTo X="0.4" Y="0.3"/>
+              <MoveTo X="0.15" Y="0.55"/>
+              <LineTo X="0.65" Y="0.55"/>
+              <MoveTo X="0.15" Y="0.05"/>
+              <LineTo X="0.65" Y="0.05"/>
+            </Line>
+          </Geom>
+        </Shape>
+      </Shapes>
+    </Master>
+    <!-- Connector master -->
+    <Master ID="4" Name="Connector" NameU="Connector">
+      <Shapes>
+        <Shape ID="4" Name="DynamicConnector" Type="Shape">
+          <Geom>
+            <Line ToSheet="4">
+              <MoveTo X="0" Y="0"/>
+              <LineTo X="1" Y="0"/>
+            </Line>
+          </Geom>
+        </Shape>
+      </Shapes>
+    </Master>
+    <!-- Group container master -->
+    <Master ID="5" Name="LayerGroup" NameU="LayerGroup">
+      <Shapes>
+        <Shape ID="5" Name="GroupRect" Type="Shape">
+          <Geom>
+            <Line ToSheet="5">
+              <MoveTo X="0" Y="0"/>
+              <LineTo X="6" Y="0"/>
+              <LineTo X="6" Y="3.5"/>
+              <LineTo X="0" Y="3.5"/>
+              <LineTo X="0" Y="0"/>
+            </Line>
+          </Geom>
+        </Shape>
+      </Shapes>
+    </Master>
+  </Masters>
+
+  <Pages>
+    <Page ID="1" Name="Architecture" NameU="Architecture">
+      <PageProps>
+        <PageWidth>16</PageWidth>
+        <PageHeight>10</PageHeight>
+      </PageProps>
+      <Shapes>
+        <!-- Layer groups -->
+        <Shape ID="10" Master="5" Name="Presentation Layer" Type="Group">
+          <Text>Presentation Layer (Controller)</Text>
+          <XForm>
+            <PinX>4</PinX><PinY>8.5</PinY><Width>8</Width><Height>2</Height>
+          </XForm>
+        </Shape>
+        <Shape ID="11" Master="5" Name="Business Layer" Type="Group">
+          <Text>Business Layer (Services)</Text>
+          <XForm>
+            <PinX>4</PinX><PinY>6.0</PinY><Width>8</Width><Height>2.2</Height>
+          </XForm>
+        </Shape>
+        <Shape ID="12" Master="5" Name="Data Layer" Type="Group">
+          <Text>Data Layer (Repository &amp; Persistence)</Text>
+          <XForm>
+            <PinX>4</PinX><PinY>3.3</PinY><Width>8</Width><Height>2.4</Height>
+          </XForm>
+        </Shape>
+
+        <!-- External Actor -->
+        <Shape ID="20" Master="3" Name="User" Type="Shape">
+          <Text>Client / User</Text>
+          <XForm>
+            <PinX>1.5</PinX><PinY>9.2</PinY><Width>0.8</Width><Height>1.2</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Controller -->
+        <Shape ID="30" Master="1" Name="UserAuthController" Type="Shape">
+          <Text>UserAuthController (/auth/*)</Text>
+          <XForm>
+            <PinX>4.5</PinX><PinY>9</PinY><Width>3</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- SecurityConfig -->
+        <Shape ID="31" Master="1" Name="SecurityConfig" Type="Shape">
+          <Text>SecurityConfig (JWT Filter Chain)</Text>
+          <XForm>
+            <PinX>8.0</PinX><PinY>9</PinY><Width>3.2</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- JwtUtil -->
+        <Shape ID="32" Master="1" Name="JwtUtil" Type="Shape">
+          <Text>JwtUtil (Token Ops)</Text>
+          <XForm>
+            <PinX>8.0</PinX><PinY>7.9</PinY><Width>3.2</Width><Height>0.9</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Service -->
+        <Shape ID="40" Master="1" Name="UserService" Type="Shape">
+          <Text>UserService (Auth Logic)</Text>
+          <XForm>
+            <PinX>4.5</PinX><PinY>6.8</PinY><Width>3</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- FlywayConfig -->
+        <Shape ID="41" Master="1" Name="FlywayConfig" Type="Shape">
+          <Text>FlywayConfig (Migrations)</Text>
+          <XForm>
+            <PinX>8.0</PinX><PinY>6.8</PinY><Width>3.2</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- DotenvEnvironmentPostProcessor -->
+        <Shape ID="42" Master="1" Name="DotenvLoader" Type="Shape">
+          <Text>DotenvEnvironmentPostProcessor</Text>
+          <XForm>
+            <PinX>8.0</PinX><PinY>5.7</PinY><Width>3.2</Width><Height>0.9</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Repository -->
+        <Shape ID="50" Master="1" Name="UserRepository" Type="Shape">
+          <Text>UserRepository (JPA)</Text>
+          <XForm>
+            <PinX>4.5</PinX><PinY>4.0</PinY><Width>3</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Entity -->
+        <Shape ID="51" Master="1" Name="UserEntity" Type="Shape">
+          <Text>User Entity (users)</Text>
+          <XForm>
+            <PinX>4.5</PinX><PinY>2.9</PinY><Width>3</Width><Height>1</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Database -->
+        <Shape ID="60" Master="2" Name="MySQLDB" Type="Shape">
+          <Text>MySQL 9.4 (Schema: users, accounts, ...)</Text>
+          <XForm>
+            <PinX>4.5</PinX><PinY>1.5</PinY><Width>3</Width><Height>1.2</Height>
+          </XForm>
+        </Shape>
+
+        <!-- OpenAPI -->
+        <Shape ID="70" Master="1" Name="OpenApiConfig" Type="Shape">
+          <Text>OpenApiConfig (Swagger UI)</Text>
+          <XForm>
+            <PinX>1.5</PinX><PinY>7.0</PinY><Width>2.4</Width><Height>0.9</Height>
+          </XForm>
+        </Shape>
+
+        <!-- Connectors (simple line shapes) -->
+        <Shape ID="100" Master="4" Name="C1" Type="Shape">
+          <XForm><PinX>3.0</PinX><PinY>9.0</PinY><Width>3</Width><Height>0</Height></XForm>
+        </Shape>
+        <Shape ID="101" Master="4" Name="C2" Type="Shape">
+          <XForm><PinX>4.5</PinX><PinY>8.2</PinY><Width>0</Width><Height>1.2</Height></XForm>
+        </Shape>
+        <Shape ID="102" Master="4" Name="C3" Type="Shape">
+          <XForm><PinX>4.5</PinX><PinY>6.1</PinY><Width>0</Width><Height>1.6</Height></XForm>
+        </Shape>
+        <Shape ID="103" Master="4" Name="C4" Type="Shape">
+          <XForm><PinX>4.5</PinX><PinY>3.3</PinY><Width>0</Width><Height>1.4</Height></XForm>
+        </Shape>
+        <Shape ID="104" Master="4" Name="C5" Type="Shape">
+          <XForm><PinX>4.5</PinX><PinY>2.2</PinY><Width>0</Width><Height>1.0</Height></XForm>
+        </Shape>
+        <Shape ID="105" Master="4" Name="C6" Type="Shape">
+          <XForm><PinX>6.1</PinX><PinY>9.0</PinY><Width>1.9</Width><Height>0</Height></XForm>
+        </Shape>
+        <Shape ID="106" Master="4" Name="C7" Type="Shape">
+          <XForm><PinX>8.0</PinX><PinY>8.5</PinY><Width>0</Width><Height>0.9</Height></XForm>
+        </Shape>
+        <Shape ID="107" Master="4" Name="C8" Type="Shape">
+          <XForm><PinX>8.0</PinX><PinY>6.3</PinY><Width>0</Width><Height>1.2</Height></XForm>
+        </Shape>
+        <Shape ID="108" Master="4" Name="C9" Type="Shape">
+          <XForm><PinX>4.5</PinX><PinY>5.1</PinY><Width>0</Width><Height>1.2</Height></XForm>
+        </Shape>
+      </Shapes>
+
+      <Connects>
+        <!-- Logical connections -->
+        <Connect FromSheet="20" ToSheet="30" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="30" ToSheet="40" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="40" ToSheet="50" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="50" ToSheet="51" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="51" ToSheet="60" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="31" ToSheet="30" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="32" ToSheet="31" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="41" ToSheet="60" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="42" ToSheet="41" FromCell="PinX" ToCell="PinX"/>
+        <Connect FromSheet="70" ToSheet="30" FromCell="PinX" ToCell="PinX"/>
+      </Connects>
+    </Page>
+  </Pages>
+
+  <Styles/>
+  <Fonts/>
+  <Colors/>
+  <LayerCollection/>
+  <EventList/>
+</VisioDocument>
